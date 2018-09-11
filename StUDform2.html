@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+  body{
+    background-color: LightCyan;
+	background-repeat:no-repeat;
+}
+#Stud{
+
+    background-color: BlueViolet(0,0,0,0.7);
+	margin-top:200px;
+	margin-left:200px;
+	margin-right:200px;
+	padding:5px;
+	border-radius: 5px;
+	text-align: center;
+	color:LightBlue; 
+}
+#container{
+
+    background-color:rgba(0,0,0,0.7);
+    margin-left:200px;
+    margin-right:200px;
+    border-radius:5px;
+	padding:1px;
+}
+button{
+    background-color: LightBlue;
+    border-radius:5px;
+	padding:1px;
+	color:white;
+}
+p{
+    background-color:LightBlue;
+	margin:5px;
+	padding:10px;
+	border-radius: 5px;
+    color:white;
+}
+
+#name{
+    margin:5px;
+	padding:2px;
+	border-radius:5px;
+}
+#sname{
+    margin:5px;
+	padding:2px;
+	border-radius:5px;
+}
+#age{
+    margin:5px;
+	padding:2px;
+	border-radius:5px;
+}
+</style>
+</head>
+<body>
+
+<h1  style="color:DarkGray;" align="center"> STUDENT REGISTRATION </h1>
+
+<div id="Stud">
+<section>
+    
+	    <input type = "text" id = "sname" placeholder="Enter your last name" value = "" ><br><br>
+	    <input type = "text" id = "name" placeholder="Enter your first name" value = "" ><br><br>
+    	<input type = "text" id = "age" placeholder="Enter your age" value = "" ><br><br>
+        <button onclick = "validateForm()">SAVE</button><br><br><br>
+		<button onclick="display()">DISPLAY</button><br><br><br>
+		<button onclick = "Clear()">CLEAR</button><br><br><br>
+		<button onclick = "Refresh()">REFRESH</button>
+		
+		
+	
+</section>
+    
+</div>
+<div id="container">
+
+</div>
+
+<script >
+
+	var student={sname,name,age};
+	var myArr=[];
+	var studAdd;
+
+	function validateForm(){
+
+		student.sname = document.getElementById("sname").value;
+		student.name = document.getElementById("name").value;
+		student.age = document.getElementById("age").value;
+		
+		if(student.sname=="")
+		{
+			alert("The name must not be empty");
+			
+		}
+		else if(isNaN(student.sname.toString())==false)
+		{
+			alert("your name must be alphabets");
+		}
+		else if(student.name=="")
+		{
+		   alert("The surname must not be empty");
+		}
+		else if(isNaN(student.name.toString())==false)
+		{
+			alert("your surname must be alphabets");
+		}
+		else if(student.age=="")
+		{
+			alert("The age must not be empty");
+		}
+		else if(isNaN(student.age)!=false)
+		{
+			alert("The age must be a number");
+		}
+		else
+		{
+		    addToList();
+		}
+	 
+	}
+	function display(){
+	
+        for(var i in myArr){
+		
+		    var ptag  = document.createElement("p");
+			ptag.setAttribute("id","display");
+			ptag.innerHTML = myArr[i]+"";
+			
+		    var btnDelete =document.createElement("input");
+			btnDelete.setAttribute("type","button");
+			btnDelete.setAttribute("value","delete");
+			btnDelete.setAttribute("style","background-color:DarkGray; margin : 5px; border-radius:5px;color:black;padding:5px;");
+			btnDelete.setAttribute("onclick","deleteEach()");
+			
+			var btnUpdate =document.createElement("input");
+			btnUpdate.setAttribute("type","button");
+		    btnUpdate.setAttribute("value","Update");
+			btnUpdate.setAttribute("style","background-color:DarkGray; margin : 5px; border-radius:5px;color:black;padding:5px;");
+			btnUpdate.setAttribute("onclick","updateArry()");
+			
+			
+			
+			ptag.appendChild(btnDelete);
+			ptag.appendChild(btnUpdate);
+			
+			
+			
+		    var div = document.getElementById("container");
+			div.appendChild(ptag);
+			
+		}	
+	}
+	function addToList(){
+
+		student.name = document.getElementById("sname").value;
+		student.sname = document.getElementById("name").value;
+		student.age = document.getElementById("age").value;
+		
+		
+		
+	    studAdd=student.sname+" "+student.sname+" "+student.age+"";
+		
+		myArr.push(studAdd);
+		
+		
+	student.name = document.getElementById("sname").value ="";
+	student.sname = document.getElementById("name").value="";
+	student.age = document.getElementById("age").value="";
+	
+	}
+
+	display();
+	
+	function Refresh()
+	{
+	   location.reload();
+	
+	}
+	
+	function Clear()
+	{
+        var container = document.getElementById("container");	    
+		container.remove();
+	}
+	
+	function deleteEach()
+	{
+	
+	    var p_display = document.getElementById("display");
+		p_display.remove(); 
+	
+	}
+	function updateArry()
+	{
+	
+	    if (!myArr.length){
+		   myArr.pus(arguments)
+		
+		}
+	
+	
+	
+	
+	}
+	
+	
+		
+
+
+</script>
+
+</body>
+</html>
